@@ -1,11 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Card from '../components/Card'
 import { ApiContext } from '../context/ApiProvider'
+import { useNavigate } from 'react-router-dom'
 
 
 const Home = () => {
   //Paso 3: Consumir un contexto
   const { productos } = useContext(ApiContext)
+
 
  console.log(productos)
   return (

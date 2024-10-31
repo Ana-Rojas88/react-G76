@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { CartContext } from '../context/CartProvider';
 
 
 const NavBar = () => {
   //Paso 3: Consumir un contexto
   const { total } = useContext(CartContext);
+  const setActiveClass = ({ isActive }) => (isActive ? "active" : "noActive");
   
   return (
 
@@ -20,18 +21,19 @@ const NavBar = () => {
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav ">
         <li className="nav-item m-2">
-        <Link to='/'>Home</Link>
+        <NavLink to='/' className= {setActiveClass}>Home</NavLink>
         </li>
         <li className="nav-item m-2">
-        <Link to='/carrito'>Carrito  ${total.toFixed(2)}</Link>
+        <NavLink to='/carrito' className={setActiveClass}>Carrito  ${total.toFixed(2)}</NavLink>
         </li>
         <li className="nav-item m-2">
-        <Link to='/register'>Register</Link>
+        <NavLink to='/register' className={setActiveClass} >Register</NavLink>
         </li>
         <li className="nav-item m-2">
-        <Link to='/login'>Login</Link> 
+        <NavLink to='/login' className={setActiveClass}>Login</NavLink> 
         </li>
       </ul>
+      <button>Cerrar sesión</button>
     </div>
   </div>
 </nav>

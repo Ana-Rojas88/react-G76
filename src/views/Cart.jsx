@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartProvider";
+import { UserContext } from "../context/UserProvider";
 
 
 const Cart = () => {
@@ -11,7 +12,7 @@ const Cart = () => {
     disminuirCantidad,
     total,
   } = useContext(CartContext);
-
+const {user} = useContext(UserContext);
   return (
     <div style={{padding:'3rem'
     }}>
@@ -39,7 +40,7 @@ const Cart = () => {
         ))
       )}
       <h3>Total a pagar: ${total.toFixed(2)}</h3>
-     
+     <button disabled={!user} >Pagar</button>
     </div>
   );
 };
