@@ -1,20 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { UserContext } from '../context/UserProvider'
 
 //Recibimos la props 
-const Login = ({user}) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+const Login = () => {
 
-    //Función que valida si los datos son correctos o incorrectos
-    const handleSesion = (e) =>{
-        e.preventDefault()
-        if(email === user.email && password === user.password){
-            alert('Bienvenido')
-        }else{
-            alert('Datos incorrectos')
-        }
-       
-    }
+    const {setEmail, setPassword, handleSubmit} = useContext(UserContext)
 
   return (
     <div style={{
@@ -27,7 +17,7 @@ const Login = ({user}) => {
         marginTop:'5rem'
     }}>
         <h2>Inicio de sesión</h2>
-        <form onSubmit={handleSesion} style={{
+        <form onSubmit={handleSubmit} style={{
             display: 'flex',
             flexDirection:'column',
             gap:'1rem'

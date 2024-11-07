@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { CartContext } from '../context/CartProvider';
+import { UserContext } from '../context/UserProvider';
 
 
 const NavBar = () => {
   //Paso 3: Consumir un contexto
   const { total } = useContext(CartContext);
+  const { logout} = useContext(UserContext)
   const setActiveClass = ({ isActive }) => (isActive ? "active" : "noActive");
   
   return (
@@ -32,8 +34,11 @@ const NavBar = () => {
         <li className="nav-item m-2">
         <NavLink to='/login' className={setActiveClass}>Login</NavLink> 
         </li>
+        <li className="nav-item m-2">
+        <NavLink to='/perfil' className={setActiveClass}>Perfil</NavLink> 
+        </li>
       </ul>
-      <button>Cerrar sesión</button>
+      <button onClick={logout}>Cerrar sesión</button>
     </div>
   </div>
 </nav>

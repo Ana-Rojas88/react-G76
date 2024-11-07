@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export const CartContext = createContext();
 
@@ -57,14 +58,33 @@ const CartProvide = ({children}) =>{
       console.log(nuevoTotal);
       setTotal(nuevoTotal);
       console.log(total);
-    }, [carrito]); // El efecto depende del carrito
+    }, [carrito]);
+    // El efecto depende del carrito
+    const token_jwt = localStorage.getItem("token");
+    const pagoTotal = async () =>{
+      await fetch("http://localhost:5000/api/checkouts", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token_jwt}`,
+        },
+        body: JSON.stringify({
+        cart: carrito,
+        }),
+        });
+        Swal.fire({
+          title: "Compra realizada con exito!",
+          text: "You clicked the button!",
+          icon: "success"
+        });
+    }
     return(
         <CartContext.Provider value={{ carrito,
             agregarAlCarrito,
             eliminarDelCarrito,
             aumentarCantidad,
             disminuirCantidad,
-            total}}>
+            total, pagoTotal}}>
             {children}
         </CartContext.Provider>
     )

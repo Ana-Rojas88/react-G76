@@ -10,9 +10,9 @@ const Cart = () => {
     eliminarDelCarrito,
     aumentarCantidad,
     disminuirCantidad,
-    total,
+    total, pagoTotal
   } = useContext(CartContext);
-const {user} = useContext(UserContext);
+const {token} = useContext(UserContext);
   return (
     <div style={{padding:'3rem'
     }}>
@@ -40,7 +40,7 @@ const {user} = useContext(UserContext);
         ))
       )}
       <h3>Total a pagar: ${total.toFixed(2)}</h3>
-     <button disabled={!user} >Pagar</button>
+     <button disabled={!token} onClick={pagoTotal} >Pagar</button>
     </div>
   );
 };

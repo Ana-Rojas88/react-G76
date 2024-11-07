@@ -10,6 +10,7 @@ import Login from "./views/Login";
 import DetailProduct from "./views/DetailProduct";
 import { UserContext } from "./context/UserProvider";
 import { useContext } from "react";
+import Profile from "./views/Profile";
 
 const App = () =>{
   const { user } = useContext(UserContext);
@@ -25,8 +26,9 @@ const App = () =>{
   <Route path="/" element={<Home />}/>
   <Route path="/carrito" element={<Cart />}/>
   <Route path="/login" element={<Login />} />
-  <Route path="/register" element={user ? <Home/> : <Register />} />
+  <Route path="/register" element={ <Register />} />
   <Route path="/product/:id"  element={user ? <DetailProduct /> : <Navigate to="/login" />}/>
+  <Route path="/perfil" element={<Profile />}/>
 </Routes>
   </CartProvide>
 </ApiProvider>
